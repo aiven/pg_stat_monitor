@@ -18,11 +18,11 @@ REGRESS = basic version guc counters relations database error_insert application
 # which typical installcheck users do not have (e.g. buildfarm clients).
 # NO_INSTALLCHECK = 1
 
-PG_CONFIG = pg_config
+PG_CONFIG ?= pg_config
 PGSM_INPUT_SQL_VERSION := 1.0
 
 ifdef USE_PGXS
-MAJORVERSION := $(shell pg_config --version | awk {'print $$2'} | cut -f1 -d".")
+MAJORVERSION := $(shell $(PG_CONFIG) --version | awk {'print $$2'} | cut -f1 -d".")
 PGXS := $(shell $(PG_CONFIG) --pgxs)
 include $(PGXS)
 else
