@@ -18,8 +18,8 @@ REGRESS = basic version guc counters relations database error_insert application
 # NO_INSTALLCHECK = 1
 
 
-PG_CONFIG = pg_config
-PG_VERSION := $(shell pg_config --version | awk {'print $$1 $$2'})
+PG_CONFIG ?= pg_config
+PG_VERSION := $(shell $(PG_CONFIG) --version | awk {'print $$1 $$2'})
 MAJOR := $(shell echo $(PG_VERSION) | sed -e 's/\.[^./]*$$//')
 
 ifneq (,$(findstring PostgreSQL14,$(MAJOR)))
